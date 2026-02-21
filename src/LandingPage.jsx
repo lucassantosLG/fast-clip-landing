@@ -159,7 +159,7 @@ const FastClipLandingPage = () => {
       {/*  */}
       <section
         className="relative h-screen flex flex-col bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero-background.jpeg')" }}
+        style={{ backgroundImage: "url('/images/hero-background.jpeg')", height: '100dvh' }}
       >
         {/* Overlay escuro */}
         <div className="absolute inset-0 bg-obsidian/75"></div>
@@ -172,7 +172,7 @@ const FastClipLandingPage = () => {
         </div>
 
         {/* ── MEIO/TOPO: título logo abaixo do banner ── */}
-        <div className="relative z-20 flex flex-col items-center px-5 pt-32 pb-2 text-center flex-shrink-1">
+        <div className="relative z-20 flex flex-col items-center px-5 pt-4 sm:pt-32 pb-2 text-center flex-shrink-0">
           <h1 className="font-display leading-none">
             <span
               className="block text-5xl sm:text-7xl md:text-9xl text-ghost tracking-tight"
