@@ -57,24 +57,23 @@ const InlineForm = ({ darkBg = false }) => {
     }
   };
 
-  // ── Estilos condicionais: fundo escuro (CTA bronze) ou fundo claro ──
   const inputClass = darkBg
-    ? "font-karla flex-none px-2 py-1 text-sm bg-white border-2 border-white/50 rounded-lg text-black-primary placeholder-gray-medium focus:outline-none focus:border-white transition-all duration-300 disabled:opacity-60"
-    : "font-karla flex-none px-2 py-1 text-sm bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60";
+    ? "font-karla w-full px-4 py-3 text-base bg-white border-2 border-white/50 rounded-lg text-black-primary placeholder-gray-medium focus:outline-none focus:border-white transition-all duration-300 disabled:opacity-60"
+    : "font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60";
 
   const btnClass = darkBg
-    ? "font-karla px-6 py-3 text-sm bg-black-primary text-white font-bold rounded-lg hover:bg-gray-dark hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
-    : "font-karla px-6 py-3 text-sm bg-bronze-light text-black-primary font-bold rounded-lg hover:bg-copper/80 hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap";
+    ? "font-karla w-full px-6 py-3 text-base bg-black-primary text-white font-bold rounded-lg hover:bg-gray-dark hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+    : "font-karla w-full px-6 py-3 text-base bg-bronze-light text-black-primary font-bold rounded-lg hover:bg-copper/80 hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed";
 
-  const feedbackColorSending = darkBg ? "text-white/80"   : "text-gray-dark";
-  const feedbackColorSuccess = darkBg ? "text-green-300"  : "text-green-600";
-  const feedbackColorError   = darkBg ? "text-red-300"    : "text-red-500";
+  const feedbackColorSending = darkBg ? "text-white/80"  : "text-gray-dark";
+  const feedbackColorSuccess = darkBg ? "text-green-300" : "text-green-600";
+  const feedbackColorError   = darkBg ? "text-red-300"   : "text-red-500";
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 w-full px-4 sm:px-0">
       <form
         onSubmit={handleSubmit}
-        className="max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch justify-center gap-2"
+        className="max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch gap-2"
       >
         <input
           type="text"
@@ -83,7 +82,7 @@ const InlineForm = ({ darkBg = false }) => {
           placeholder="Nome"
           required
           disabled={status === 'sending'}
-          className={`${inputClass} w-32`}
+          className={inputClass}
         />
         <input
           type="tel"
@@ -93,7 +92,7 @@ const InlineForm = ({ darkBg = false }) => {
           required
           maxLength={15}
           disabled={status === 'sending'}
-          className={`${inputClass} w-40`}
+          className={inputClass}
         />
         <input
           type="email"
@@ -102,7 +101,7 @@ const InlineForm = ({ darkBg = false }) => {
           placeholder="E-mail"
           required
           disabled={status === 'sending'}
-          className={`${inputClass} w-32`}
+          className={inputClass}
         />
         <button
           type="submit"
@@ -113,7 +112,6 @@ const InlineForm = ({ darkBg = false }) => {
         </button>
       </form>
 
-      {/* Feedback */}
       {status === 'sending' && (
         <p className={`text-center text-sm mt-3 font-karla animate-pulse ${feedbackColorSending}`}>
           Enviando...
@@ -238,38 +236,44 @@ const FastClipLandingPage = () => {
     <div className="font-karla">
 
       {/*  */}
-      {/* HERO SECTION                                                 */}
+      {/* HERO SECTION — mobile-first                                  */}
       {/*  */}
       <section
-        className="relative min-h-screen flex flex-col bg-cover bg-center opacity-90"
+        className="relative min-h-screen flex flex-col bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/images/hero-background.jpeg')" }}
       >
-        <div className="absolute inset-0 bg-obsidian/70"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-obsidian/75"></div>
 
-        <div className="relative z-20 w-full bg-bronze py-3 text-center mb-16">
-          <span className="font-display text-ghost text-sm md:text-base uppercase tracking-wide underline">
-            LANÇAMENTO EM 60 DIAS - ENTRE NA LISTA DE ESPERA
+        {/* ── Topo: banner de urgência ── */}
+        <div className="relative z-20 w-full bg-bronze py-3 px-4 text-center">
+          <span className="font-display text-ghost text-xs sm:text-sm md:text-base uppercase tracking-wide underline leading-snug">
+            LANÇAMENTO EM 60 DIAS — ENTRE NA LISTA DE ESPERA
           </span>
         </div>
 
-        <div className="relative z-20 flex flex-col items-center pt-8 px-6 text-center">
-          <h1 className="font-display leading-tight">
+        {/* ── Centro: título ── */}
+        <div className="relative z-20 flex flex-col items-center justify-center flex-1 px-5 pt-8 pb-4 text-center">
+          <h1 className="font-display leading-none">
             <span
-              className="block text-8xl md:text-9xl text-ghost tracking-tight"
-              style={{ WebkitTextStroke: '3px #F5F5F0' }}
+              className="block text-6xl sm:text-8xl md:text-9xl text-ghost tracking-tight"
+              style={{ WebkitTextStroke: '2px #F5F5F0' }}
             >
               FAST CLIP
             </span>
-            <span className="block text-3xl md:text-4xl text-bronze-light tracking-tight mt-1">
-              VOCÊ ESCOLHE A ROUPA - NÓS GARANTIMOS QUE FUNCIONE
+            <span className="block text-lg sm:text-2xl md:text-4xl text-bronze-light tracking-tight mt-3 leading-snug px-2">
+              VOCÊ ESCOLHE A ROUPA —<br className="sm:hidden" /> NÓS GARANTIMOS QUE FUNCIONE
             </span>
           </h1>
         </div>
 
-        <div className="relative z-10 w-full mt-auto pb-10 px-6">
+        {/* ── Baixo: formulário + selos ── */}
+        <div className="relative z-20 w-full pb-8 px-5">
+
+          {/* Formulário mobile-first: empilhado no mobile, horizontal no sm+ */}
           <form
             onSubmit={handleSubmitHero}
-            className="max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch justify-center gap-2"
+            className="max-w-xl mx-auto flex flex-col sm:flex-row gap-2"
           >
             <input
               type="text"
@@ -278,7 +282,7 @@ const FastClipLandingPage = () => {
               placeholder="Nome"
               required
               disabled={status === 'sending'}
-              className="font-karla flex-none w-32 px-2 py-1 text-sm bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
             />
             <input
               type="tel"
@@ -288,7 +292,7 @@ const FastClipLandingPage = () => {
               required
               maxLength={15}
               disabled={status === 'sending'}
-              className="font-karla flex-none w-40 px-2 py-1 text-sm bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
             />
             <input
               type="email"
@@ -297,35 +301,37 @@ const FastClipLandingPage = () => {
               placeholder="E-mail"
               required
               disabled={status === 'sending'}
-              className="font-karla flex-none w-32 px-2 py-1 text-sm bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
             />
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="font-karla px-6 py-3 text-sm bg-bronze-light text-black-primary font-bold rounded-lg hover:bg-copper/80 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
+              className="font-karla w-full sm:w-auto px-6 py-3 text-base bg-bronze-light text-black-primary font-bold rounded-lg hover:bg-copper/80 active:scale-95 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
             >
               {status === 'sending' ? 'Enviando...' : 'Entrar na Lista'}
             </button>
           </form>
 
+          {/* Feedback */}
           {status === 'sending' && <p className="text-center text-sm mt-3 text-off-white/80 font-karla animate-pulse">Enviando...</p>}
-          {status === 'success' && <p className="text-center text-sm mt-3 text-green-400 font-karla font-bold">✅ Cadastro realizado com sucesso! Em breve entraremos em contato.</p>}
+          {status === 'success' && <p className="text-center text-sm mt-3 text-green-400 font-karla font-bold">✅ Cadastro realizado! Em breve entraremos em contato.</p>}
           {status === 'error'   && <p className="text-center text-sm mt-3 text-red-400 font-karla font-bold">❌ Erro ao cadastrar. Tente novamente.</p>}
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-4">
+          {/* Selos */}
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4 mt-5">
             <div className="flex items-center gap-2 text-off-white/80">
-              <FiTag size={16} className="text-bronze-light flex-shrink-0" />
-              <span className="font-karla text-sm tracking-wide">Desconto de 25%</span>
+              <FiTag size={15} className="text-bronze-light flex-shrink-0" />
+              <span className="font-karla text-xs sm:text-sm tracking-wide">Desconto de 25%</span>
             </div>
             <div className="hidden sm:block w-px h-4 bg-off-white/30"></div>
             <div className="flex items-center gap-2 text-off-white/80">
-              <FiTruck size={16} className="text-bronze-light flex-shrink-0" />
-              <span className="font-karla text-sm tracking-wide">Frete Grátis</span>
+              <FiTruck size={15} className="text-bronze-light flex-shrink-0" />
+              <span className="font-karla text-xs sm:text-sm tracking-wide">Frete Grátis</span>
             </div>
             <div className="hidden sm:block w-px h-4 bg-off-white/30"></div>
             <div className="flex items-center gap-2 text-off-white/80">
-              <FiZap size={16} className="text-bronze-light flex-shrink-0" />
-              <span className="font-karla text-sm tracking-wide">Acesso Prioritário</span>
+              <FiZap size={15} className="text-bronze-light flex-shrink-0" />
+              <span className="font-karla text-xs sm:text-sm tracking-wide">Acesso Prioritário</span>
             </div>
           </div>
         </div>
@@ -402,8 +408,6 @@ const FastClipLandingPage = () => {
               className="relative z-0 w-full object-cover opacity-80"
             />
           </div>
-
-          {/* ── Formulário na dobra inferior da Solução Section ── */}
           <InlineForm darkBg={false} />
         </div>
       </section>
@@ -459,8 +463,6 @@ const FastClipLandingPage = () => {
               </div>
             ))}
           </div>
-
-          {/* ── Formulário na dobra inferior de Especificações ── */}
           <InlineForm darkBg={false} />
         </div>
       </section>
@@ -490,8 +492,6 @@ const FastClipLandingPage = () => {
               </div>
             ))}
           </div>
-
-          {/* ── Formulário na dobra inferior de Bônus ── */}
           <InlineForm darkBg={false} />
         </div>
       </section>
@@ -541,8 +541,6 @@ const FastClipLandingPage = () => {
           <p className="text-xl mb-4 text-white/90 max-w-2xl mx-auto font-karla leading-relaxed">
             Junte-se aos milhares de profissionais que já garantiram seu Fast Clip
           </p>
-
-          {/* ── Formulário horizontal com tema escuro ── */}
           <InlineForm darkBg={true} />
         </div>
       </section>
