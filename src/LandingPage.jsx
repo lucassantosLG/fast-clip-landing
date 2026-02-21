@@ -157,106 +157,115 @@ const FastClipLandingPage = () => {
       {/*  */}
       {/* HERO SECTION — 100vh, mobile-first                          */}
       {/*  */}
-      <section
-        className="relative flex flex-col bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero-background.jpeg')" minHeight: '100dvh' }}
-      >
-        {/* Overlay escuro */}
-        <div className="absolute inset-0 bg-obsidian/75"></div>
+      {/* HERO SECTION */}
+<section
+  className="relative flex flex-col bg-cover bg-center bg-no-repeat"
+  style={{ backgroundImage: "url('/images/hero-background.jpeg')", minHeight: '100dvh' }}
+>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-obsidian/75"></div>
 
-        {/* ── TOPO: banner de urgência ── */}
-        <div className="relative z-20 w-full bg-bronze py-3 px-4 text-center flex-shrink-0">
-          <span className="font-display text-ghost text-xs sm:text-sm md:text-base uppercase tracking-wide underline">
-            LANÇAMENTO EM 60 DIAS — ENTRE NA LISTA DE ESPERA
-          </span>
-        </div>
+  {/* Container interno — ocupa toda a altura e distribui conteúdo */}
+  <div className="relative z-20 flex flex-col justify-between w-full" style={{ minHeight: '100dvh' }}>
 
-        {/* ── MEIO/TOPO: título logo abaixo do banner ── */}
-        <div className="relative z-20 flex flex-col items-center px-5 pt-3 pb-2 text-center flex-shrink-0">
-          <h1 className="font-display leading-none">
-            <span
-              className="block text-5xl sm:text-7xl md:text-9xl text-ghost tracking-tight"
-              style={{ WebkitTextStroke: '2px #F5F5F0' }}
-            >
-              FAST CLIP
-            </span>
-            <span className="block text-sm sm:text-xl md:text-4xl text-bronze-light tracking-tight mt-2 leading-snug px-2">
-              VOCÊ ESCOLHE A ROUPA —{' '}
-              <br className="sm:hidden" />
-              NÓS GARANTIMOS QUE FUNCIONE
-            </span>
-          </h1>
-        </div>
+    {/* ── TOPO ── */}
+    <div className="flex flex-col items-center">
 
-        {/* ── FUNDO: formulário + selos ── empurrado para o rodapé com mt-auto ── */}
-        <div className="relative z-20 w-full mt-auto pb-4 px-5">
+      {/* Banner urgência */}
+      <div className="w-full bg-bronze py-3 px-4 text-center">
+        <span className="font-display text-ghost text-xs sm:text-sm md:text-base uppercase tracking-wide underline">
+          LANÇAMENTO EM 60 DIAS — ENTRE NA LISTA DE ESPERA
+        </span>
+      </div>
 
-          {/* Formulário empilhado no mobile */}
-          <form
-            onSubmit={handleSubmitHero}
-            className="max-w-xl mx-auto flex flex-col sm:flex-row gap-2"
+      {/* Título */}
+      <div className="flex flex-col items-center px-5 pt-4 pb-2 text-center">
+        <h1 className="font-display leading-none">
+          <span
+            className="block text-5xl sm:text-7xl md:text-9xl text-ghost tracking-tight"
+            style={{ WebkitTextStroke: '2px #F5F5F0' }}
           >
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Nome"
-              required
-              disabled={status === 'sending'}
-              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
-            />
-            <input
-              type="tel"
-              value={phoneDisplay}
-              onChange={handlePhoneChange}
-              placeholder="(DD) WhatsApp"
-              required
-              maxLength={15}
-              disabled={status === 'sending'}
-              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
-            />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-mail"
-              required
-              disabled={status === 'sending'}
-              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
-            />
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className="font-karla w-full sm:w-auto px-6 py-3 text-base bg-bronze-light text-black-primary font-bold rounded-lg hover:bg-copper/80 active:scale-95 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {status === 'sending' ? 'Enviando...' : 'Entrar na Lista'}
-            </button>
-          </form>
+            FAST CLIP
+          </span>
+          <span className="block text-sm sm:text-xl md:text-4xl text-bronze-light tracking-tight mt-2 leading-snug px-2">
+            VOCÊ ESCOLHE A ROUPA —{' '}
+            <br className="sm:hidden" />
+            NÓS GARANTIMOS QUE FUNCIONE
+          </span>
+        </h1>
+      </div>
+    </div>
 
-          {/* Feedback */}
-          {status === 'sending' && <p className="text-center text-xs mt-2 text-off-white/80 font-karla animate-pulse">Enviando...</p>}
-          {status === 'success' && <p className="text-center text-xs mt-2 text-green-400 font-karla font-bold">✅ Cadastro realizado! Em breve entraremos em contato.</p>}
-          {status === 'error'   && <p className="text-center text-xs mt-2 text-red-400 font-karla font-bold">❌ Erro ao cadastrar. Tente novamente.</p>}
+    {/* ── RODAPÉ: formulário + selos ── */}
+    <div className="w-full pb-6 px-5">
 
-          {/* Selos */}
-          <div className="flex flex-row flex-wrap items-center justify-center gap-3 mt-4">
-            <div className="flex items-center gap-1 text-off-white/80">
-              <FiTag size={13} className="text-bronze-light flex-shrink-0" />
-              <span className="font-karla text-xs tracking-wide">Desconto de 25%</span>
-            </div>
-            <div className="w-px h-3 bg-off-white/30"></div>
-            <div className="flex items-center gap-1 text-off-white/80">
-              <FiTruck size={13} className="text-bronze-light flex-shrink-0" />
-              <span className="font-karla text-xs tracking-wide">Frete Grátis</span>
-            </div>
-            <div className="w-px h-3 bg-off-white/30"></div>
-            <div className="flex items-center gap-1 text-off-white/80">
-              <FiZap size={13} className="text-bronze-light flex-shrink-0" />
-              <span className="font-karla text-xs tracking-wide">Acesso Prioritário</span>
-            </div>
-          </div>
+      <form
+        onSubmit={handleSubmitHero}
+        className="max-w-xl mx-auto flex flex-col sm:flex-row gap-2"
+      >
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Nome"
+          required
+          disabled={status === 'sending'}
+          className="font-karla w-full px-4 py-2.5 text-sm bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+        />
+        <input
+          type="tel"
+          value={phoneDisplay}
+          onChange={handlePhoneChange}
+          placeholder="(DD) WhatsApp"
+          required
+          maxLength={15}
+          disabled={status === 'sending'}
+          className="font-karla w-full px-4 py-2.5 text-sm bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail"
+          required
+          disabled={status === 'sending'}
+          className="font-karla w-full px-4 py-2.5 text-sm bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+        />
+        <button
+          type="submit"
+          disabled={status === 'sending'}
+          className="font-karla w-full sm:w-auto px-6 py-2.5 text-sm bg-bronze-light text-black-primary font-bold rounded-lg hover:bg-copper/80 active:scale-95 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {status === 'sending' ? 'Enviando...' : 'Entrar na Lista'}
+        </button>
+      </form>
+
+      {/* Feedback */}
+      {status === 'sending' && <p className="text-center text-xs mt-2 text-off-white/80 font-karla animate-pulse">Enviando...</p>}
+      {status === 'success' && <p className="text-center text-xs mt-2 text-green-400 font-karla font-bold">✅ Cadastro realizado! Em breve entraremos em contato.</p>}
+      {status === 'error'   && <p className="text-center text-xs mt-2 text-red-400 font-karla font-bold">❌ Erro ao cadastrar. Tente novamente.</p>}
+
+      {/* Selos */}
+      <div className="flex flex-row flex-wrap items-center justify-center gap-3 mt-3">
+        <div className="flex items-center gap-1 text-off-white/80">
+          <FiTag size={12} className="text-bronze-light flex-shrink-0" />
+          <span className="font-karla text-xs tracking-wide">Desconto de 25%</span>
         </div>
-      </section>
+        <div className="w-px h-3 bg-off-white/30"></div>
+        <div className="flex items-center gap-1 text-off-white/80">
+          <FiTruck size={12} className="text-bronze-light flex-shrink-0" />
+          <span className="font-karla text-xs tracking-wide">Frete Grátis</span>
+        </div>
+        <div className="w-px h-3 bg-off-white/30"></div>
+        <div className="flex items-center gap-1 text-off-white/80">
+          <FiZap size={12} className="text-bronze-light flex-shrink-0" />
+          <span className="font-karla text-xs tracking-wide">Acesso Prioritário</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
       {/*  */}
       {/* PROBLEMA SECTION                                             */}
