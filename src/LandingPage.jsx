@@ -158,8 +158,8 @@ const FastClipLandingPage = () => {
       {/* HERO SECTION — 100vh, mobile-first                          */}
       {/*  */}
       <section
-        className="relative h-screen flex flex-col bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero-background.jpeg')" }}
+        className="relative flex flex-col bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/hero-background.jpeg')" minHeight: '100dvh' }}
       >
         {/* Overlay escuro */}
         <div className="absolute inset-0 bg-obsidian/75"></div>
@@ -172,7 +172,7 @@ const FastClipLandingPage = () => {
         </div>
 
         {/* ── MEIO/TOPO: título logo abaixo do banner ── */}
-        <div className="relative z-20 flex flex-col items-center px-5 pt-6 pb-2 text-center flex-shrink-0">
+        <div className="relative z-20 flex flex-col items-center px-5 pt-3 pb-2 text-center flex-shrink-0">
           <h1 className="font-display leading-none">
             <span
               className="block text-5xl sm:text-7xl md:text-9xl text-ghost tracking-tight"
@@ -189,7 +189,7 @@ const FastClipLandingPage = () => {
         </div>
 
         {/* ── FUNDO: formulário + selos ── empurrado para o rodapé com mt-auto ── */}
-        <div className="relative z-20 w-full mt-auto pb-6 px-5">
+        <div className="relative z-20 w-full mt-auto pb-4 px-5">
 
           {/* Formulário empilhado no mobile */}
           <form
