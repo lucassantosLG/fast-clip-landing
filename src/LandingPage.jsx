@@ -11,9 +11,9 @@ const EMAILJS_TEMPLATE_ID = 'template_qm0lefo';
 const EMAILJS_PUBLIC_KEY  = 'fJfR6AZemIyTdUIOm';
 
 const formatPhone = (digits) => {
-  if (digits.length &lt;= 2)  return digits;
-  if (digits.length &lt;= 7)  return `(${digits.slice(0,2)}) ${digits.slice(2)}`;
-  if (digits.length &lt;= 11) return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
+  if (digits.length <= 2)  return digits;
+  if (digits.length <= 7)  return `(${digits.slice(0,2)}) ${digits.slice(2)}`;
+  if (digits.length <= 11) return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
   return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7,11)}`;
 };
 
@@ -33,7 +33,7 @@ const InlineForm = ({ darkBg = false }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (phone.length &lt; 10) {
+    if (phone.length < 10) {
       alert('Por favor, informe o DDD + número completo do WhatsApp.');
       return;
     }
@@ -99,7 +99,7 @@ const FastClipLandingPage = () => {
 
   const handleSubmitHero = async (e) => {
     e.preventDefault();
-    if (phone.length &lt; 10) {
+    if (phone.length < 10) {
       alert('Por favor, informe o DDD + número completo do WhatsApp.');
       return;
     }
@@ -158,8 +158,8 @@ const FastClipLandingPage = () => {
       {/* HERO SECTION — 100vh, mobile-first                          */}
       {/*  */}
       <section
-        className="relative flex flex-col bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero-background.jpeg')", minHeight: '100dvh' }}
+        className="relative h-screen flex flex-col bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/hero-background.jpeg')" }}
       >
         {/* Overlay escuro */}
         <div className="absolute inset-0 bg-obsidian/75"></div>
@@ -172,7 +172,7 @@ const FastClipLandingPage = () => {
         </div>
 
         {/* ── MEIO/TOPO: título logo abaixo do banner ── */}
-        <div className="relative z-20 flex flex-col items-center px-5 pt-3 pb-2 text-center flex-shrink-0">
+        <div className="relative z-20 flex flex-col items-center px-5 pt-32 pb-2 text-center flex-shrink-1">
           <h1 className="font-display leading-none">
             <span
               className="block text-5xl sm:text-7xl md:text-9xl text-ghost tracking-tight"
@@ -189,12 +189,12 @@ const FastClipLandingPage = () => {
         </div>
 
         {/* ── FUNDO: formulário + selos ── empurrado para o rodapé com mt-auto ── */}
-        <div className="relative z-20 w-full mt-auto pb-4 px-5">
+        <div className="relative z-20 w-full mt-auto pb-6 px-5">
 
           {/* Formulário empilhado no mobile */}
           <form
             onSubmit={handleSubmitHero}
-            className="max-w-xl mx-auto flex flex-col sm:flex-row gap-2"
+            className="max-w-lg mx-auto flex flex-col sm:flex-row gap-2"
           >
             <input
               type="text"
@@ -203,7 +203,7 @@ const FastClipLandingPage = () => {
               placeholder="Nome"
               required
               disabled={status === 'sending'}
-              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+              className="font-karla w-full px-4 py-1.5 leading-none text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
             />
             <input
               type="tel"
@@ -213,7 +213,7 @@ const FastClipLandingPage = () => {
               required
               maxLength={15}
               disabled={status === 'sending'}
-              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+              className="font-karla w-full px-4 py-1.5 leading-none text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
             />
             <input
               type="email"
@@ -222,12 +222,12 @@ const FastClipLandingPage = () => {
               placeholder="E-mail"
               required
               disabled={status === 'sending'}
-              className="font-karla w-full px-4 py-3 text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
+              className="font-karla w-full px-4 py-1.5 leading-none text-base bg-off-white border-2 border-bronze/30 rounded-lg text-black-primary placeholder-gray-dark/50 focus:outline-none focus:border-bronze transition-all duration-300 disabled:opacity-60"
             />
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="font-karla w-full sm:w-auto px-6 py-3 text-base bg-bronze-light text-black-primary font-bold rounded-lg hover:bg-copper/80 active:scale-95 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+              className="font-karla w-full max-w-xl px-4 py-1.5 leading-none text-base bg-bronze-light text-black-primary font-bold rounded-lg hover:bg-copper/80 active:scale-95 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === 'sending' ? 'Enviando...' : 'Entrar na Lista'}
             </button>
