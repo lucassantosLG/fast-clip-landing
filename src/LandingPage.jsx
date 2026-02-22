@@ -158,12 +158,13 @@ const FastClipLandingPage = () => {
       {/* HERO SECTION — 100vh, mobile-first                          */}
       {/*  */}
       <section
-        className="relative h-screen flex flex-col bg-cover bg-center bg-no-repeat"
+        className="relative flex flex-col"
         style={{ backgroundImage: "url('/images/hero-background.jpeg')", 
         height: '100dvh',
-        backgroundSize: 'contain',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
-        backgroundColor: '#0a0a0a' }}
+       }}
       >
         {/* Overlay escuro */}
         <div className="absolute inset-0 bg-obsidian/75"></div>
